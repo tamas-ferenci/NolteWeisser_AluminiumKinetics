@@ -16,7 +16,7 @@ The compartmental model for aluminium kinetics in human body of Nolte et al [1,2
 
 ## Remarks
 
-The model file contains the mean parameter set — as presented in the supplementary appendix of [3] — so this is used in calculations by default. However, it can be changed in R (without changing the model file) as this is only a specification for defaults, and can be overriden.
+The model file contains the mean parameter set — as presented in the supplementary appendix of [3] — so this is used in calculations by default. However, it can be changed in R (without changing the model file) as this is only a specification for defaults, and can be overridden.
 
 I tried to double-check everything, but no guarantee of course. I welcome every suggestion or correction!
 
@@ -34,7 +34,7 @@ We first load the model:
 mod <- mread( "NolteWeisser" )
 ```
 
-Let's first simulate what happens for oral dosing, using the mean parameter set (replicating Figure 4a of the supplementary appendix of [3]):
+Let's first simulate what happens for oral dosing, using the mean parameter set (replicating Figure 4b of the supplementary appendix of [3]):
 ```{r oraldosing}
 e <- ev( time = 0, evid = 1, amt = 1, cmt = "STO" )
 out <- mrgsim( ev( mod, e ), end = 10000, delta = 0.1 )
@@ -46,7 +46,7 @@ xyplot( PLASMA*100 + U*100 + LIV*100 + MUS*100 + BON*100 ~ time, data = out@data
         xlab = "Time [h]", ylab = "Aluminium [% ID]" )
 ```
 
-Iv dosing, using the mean parameter set (replicating Figure 4b of the supplementary appendix of [3]):
+Iv dosing, using the mean parameter set (replicating Figure 4a of the supplementary appendix of [3]):
 ```{r ivdosing}
 e <- ev( time = 0, evid = 1, amt = 1, cmt = "PC" )
 out <- mrgsim( ev( mod, e ), end = 10000, delta = 0.1 )
